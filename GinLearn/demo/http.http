@@ -1,0 +1,20 @@
+# curl http://localhost:9999/form  -X POST -d 'username=geektutu&password=1234'
+POST http://localhost:8080/form
+Content-Type: application/x-www-form-urlencoded
+
+username=geektutu&password=1234
+
+###
+
+
+GET http://localhost:8080/users?name=liming&role=nihao
+Accept: application/json
+
+###
+POST http://localhost:8080/api/item
+Content-Type: multipart/form-data
+
+
+###
+
+
