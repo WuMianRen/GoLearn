@@ -23,8 +23,8 @@ func CommonLogInterceptor() HandlerFunc {
 		context.Next()
 
 		strBody = strings.Trim(blw.bodyBuf.String(), "\n")
-		if len(strBody) > MAX_PRINT_BODY_LEN {
-			strBody = strBody[:(MAX_PRINT_BODY_LEN - 1)]
+		if len(strBody) > MaxPrintBodyLen {
+			strBody = strBody[:(MaxPrintBodyLen - 1)]
 		}
 		fmt.Println("end req[" + context.Req.RequestURI + "], res[" + strBody + "]")
 	}

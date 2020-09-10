@@ -14,7 +14,7 @@ import (
 	"time"
 )
 
-const MAX_PRINT_BODY_LEN = 512
+const MaxPrintBodyLen = 512
 
 type bodyLogWriter struct {
 	http.ResponseWriter
@@ -31,19 +31,21 @@ func Logger() HandlerFunc {
 	return func(c *Context) {
 		t := time.Now()
 		strBody := ""
+
 		blw := bodyLogWriter{
 			bodyBuf:        bytes.NewBufferString(""),
 			ResponseWriter: c.Writer,
 		}
+
 		c.Writer = blw
 		c.Next()
 		strBody = strings.Trim(blw.bodyBuf.String(), "\n")
 
-		if len(strBody) > MAX_PRINT_BODY_LEN {
-			strBody = strBody[:(MAX_PRINT_BODY_LEN - 1)]
+		if len(strBody) > MaxPrintBodyLen {
+			strBody = strBody[:(MaxPrintBodyLen - 1)]
 		}
 
-		log.Printf("[%d] %s body:%s in %v",
+		log.Printf("[%d] %s %s in %v",
 			c.StatusCode, c.Req.RequestURI, strBody, time.Since(t))
 	}
 }
