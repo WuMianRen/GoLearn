@@ -38,6 +38,7 @@ func Logger() HandlerFunc {
 		c.Writer = blw
 		c.Next()
 		strBody = strings.Trim(blw.bodyBuf.String(), "\n")
+
 		if len(strBody) > MAX_PRINT_BODY_LEN {
 			strBody = strBody[:(MAX_PRINT_BODY_LEN - 1)]
 		}
